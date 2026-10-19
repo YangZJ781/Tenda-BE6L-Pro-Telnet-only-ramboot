@@ -1,0 +1,11 @@
+dist/
+.payloads/
+__pycache__/
+*.pyc
+.venv/
+.env
+ramboot-logs/
+*transcript*.log
+*.bin
+*.ipk
+

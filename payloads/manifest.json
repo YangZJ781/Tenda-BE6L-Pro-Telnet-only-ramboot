@@ -1,0 +1,45 @@
+{
+  "model": "BE6LProV1.0",
+  "default_version": "V16.03.60.16",
+  "new_ip": "192.168.15.1",
+  "wireless_disabled": true,
+  "entry": "0x80088000",
+  "files": [
+    {
+      "local": "data/kexec-soft",
+      "size": 65673,
+      "sha256": "77c7f3177a8455f787bf4972217388ed6ec48be971e19b43e4edab7b4beeb028",
+      "md5": "8050bdaec1f77d534f7f4c7ba95507f9"
+    },
+    {
+      "local": "data/libz-soft.so.1",
+      "size": 69635,
+      "sha256": "361aa71a993dc9c1943930c368a176a8f6350e5fead9f75a451ffc1efe5a57c2",
+      "md5": "e50c06383dadbef2ab2039feab4e9a6e"
+    },
+    {
+      "local": "data/ld-musl-soft.so.1",
+      "size": 529085,
+      "sha256": "195a3353cbbbb1b586e62aa1b6dd4a746eb774219636a5fb847a622fd548b8c9",
+      "md5": "da459afdc45c9918ef4140664bbdc9cc"
+    },
+    {
+      "local": "data/openwrt-kernel",
+      "size": 23072608,
+      "sha256": "4112560412c7a1fb12d13b5e83d4365bb8b1e45cad2ce2e79701fb956c3dea1b",
+      "md5": "5f3238853197d75312939103013c6a2f"
+    },
+    {
+      "local": "data/kexec-split-loader",
+      "size": 680,
+      "sha256": "899473b0b58460d88f3fce266e01cdacae6228442a326192c6e2ffbe14868e44",
+      "md5": "09efa89ad8eaab3c477c91392bdb8696"
+    },
+    {
+      "local": "data/openwrt-ramonly.dtb",
+      "size": 10618,
+      "sha256": "c2517ab930e91729ed46961a2a14ddea730ce5f555d196f864273dbe5088643d",
+      "md5": "af410acbea963fdada421196de4fb350"
+    }
+  ]
+}

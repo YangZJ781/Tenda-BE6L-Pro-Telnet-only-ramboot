@@ -1,0 +1,14 @@
+{
+  "stock_version": "V16.03.60.51_cn",
+  "kernel": "6.18.52",
+  "kernel_switch_transport": "telnet",
+  "result": "initramfs_verified",
+  "model": "BE6LProV1.0",
+  "wireless_disabled": true,
+  "serial_access": false,
+  "board_name": "tenda,be6l-pro",
+  "rootfs_type": "initramfs",
+  "release_script_sha256": "ff9e6a7bd0454419d8b0722380fcf3b42cbd2acfbbd64468206fddeb04b70885",
+  "test_date": "2026-10-19",
+  "isolated_directory": true
+}

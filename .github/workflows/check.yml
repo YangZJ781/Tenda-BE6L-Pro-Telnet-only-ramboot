@@ -1,0 +1,15 @@
+name: Offline regression checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  powershell:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Windows PowerShell 5.1
+        shell: powershell
+        run: ./tests/Test-Standalone.ps1
+      - name: PowerShell 7
+        shell: pwsh
+        run: ./tests/Test-Standalone.ps1

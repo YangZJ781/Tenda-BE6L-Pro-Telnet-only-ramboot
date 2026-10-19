@@ -1,0 +1,45 @@
+{
+  "loader_sha256": "899473b0b58460d88f3fce266e01cdacae6228442a326192c6e2ffbe14868e44",
+  "kernel_sha256": "4112560412c7a1fb12d13b5e83d4365bb8b1e45cad2ce2e79701fb956c3dea1b",
+  "dtb_changes": [
+    {
+      "path": "/soc/pcie@1fa91000",
+      "property": "status",
+      "old": "okay",
+      "new": "disabled"
+    },
+    {
+      "path": "/chosen",
+      "property": "bootargs-override",
+      "old": "console=ttyS0,115200n8 earlycon ubi.mtd=ubi"
+    }
+  ],
+  "new_bootargs": "console=ttyS0,115200 earlycon",
+  "entry": "0x80088000",
+  "segments": [
+    [
+      0,
+      1540096,
+      2148040704,
+      1540096
+    ],
+    [
+      0,
+      21532512,
+      2149580800,
+      21532672
+    ],
+    [
+      0,
+      10618,
+      2263756800,
+      12288
+    ]
+  ],
+  "syscalls": {
+    "open": 5,
+    "mmap2": 192,
+    "kexec_load": 347,
+    "exit": 1
+  }
+}

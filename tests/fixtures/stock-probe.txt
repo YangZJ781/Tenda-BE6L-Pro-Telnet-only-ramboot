@@ -1,0 +1,8 @@
+armv7l
+80040000-801fffff : System RAM
+80200000-83ffffff : System RAM
+  80b00000-80c1d9f7 : Kernel data
+84100000-9fffffff : System RAM
+CDX_KEXEC_DISABLED=0
+Filesystem 1K-blocks Used Available Use% Mounted on
+none 30720 16 30704 0% /tmp

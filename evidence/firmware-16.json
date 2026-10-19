@@ -1,0 +1,20 @@
+{
+  "result": "initramfs_verified",
+  "stock_version": "V16.03.60.16_cn",
+  "board_name": "tenda,be6l-pro",
+  "rootfs_type": "initramfs",
+  "kernel": "6.18.52",
+  "release": {
+    "distribution": "X-WRT",
+    "version": "26.04_b202609230606",
+    "firmware_url": "https://downloads.openwrt.org/",
+    "revision": "r36651-d58eb38f55e",
+    "target": "airoha/an7563",
+    "description": "X-WRT 26.04_b202609230606 Resolute",
+    "builddate": "1790357592"
+  },
+  "kernel_switch_transport": "telnet",
+  "serial_log_used": true,
+  "wireless_disabled": true,
+  "test_date": "2026-10-19"
+}
