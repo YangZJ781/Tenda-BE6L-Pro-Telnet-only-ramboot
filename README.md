@@ -6,7 +6,7 @@
 
 ## 下载与运行
 
-从 **[Releases](https://github.com/YangZJ781/Tenda-BE6L-Pro-Telnet-only-ramboot/releases/tag/v0.1.0)** 下载 `Start-BE6L-Ramboot.ps1`，或者下载只含该文件的 `BE6L-Pro-RAM-Boot.zip`。
+从 **[Releases](https://github.com/YangZJ781/Tenda-BE6L-Pro-Telnet-only-ramboot/releases/tag/v0.1.1)** 下载 `Start-BE6L-Ramboot.ps1`，或者下载只含该文件的 `BE6L-Pro-RAM-Boot.zip`。
 
 **只需要这一个 PS1**，约 20 MB，已内嵌全部启动文件。Windows PowerShell 5.1 / PowerShell 7 均可运行，无需 Python、OpenSSL、额外数据目录或 TTL。
 
@@ -16,7 +16,7 @@
 .\Start-BE6L-Ramboot.ps1
 ```
 
-按提示输入原厂网页管理密码。默认访问 `192.168.0.1`，**自动识别 .16 / .51 并选择对应的 Telnet 密码算法，无需传版本参数**。
+按提示输入原厂网页管理密码。默认访问 `192.168.0.1`，**自动识别 .16 / .51 / .62 并选择对应的 Telnet 密码算法，无需传版本参数**。
 
 如果执行策略阻止运行，可仅为当前进程设置：
 
@@ -32,9 +32,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Start-BE6L-Ramboot.ps1
 | --- | --- | --- | --- |
 | `V16.03.60.16_cn` | 已验证 | 已验证 | 单文件版的版本选择与密码分支另有回归检查 |
 | `V16.03.60.51_cn` | 已验证 | 已验证 | 单文件 PS1 在仅有一个输入文件的目录中完整实测，无 TTL |
-| `V16.03.60.62` | 未完成验证 | 未测试 | 不能据此判定固件不支持；当前脚本会提前停止 |
+| `V16.03.60.62_cn` | 已验证 | 已验证 | v0.1.1 单文件 PS1 在仅有一个输入文件的目录中完整实测，无 TTL |
 
-测试日期：2026-10-19；设备为 BE6L Pro V1.0。原厂内核 Linux 5.4.55，RAM 镜像 X-WRT `26.04_b202609230606` / Linux 6.18.52。测试结果保存在 [evidence/](evidence/)。
+`.16 / .51` 测试日期：2026-10-19；`.62` 测试日期：2026-10-20。设备为 BE6L Pro V1.0。原厂内核 Linux 5.4.55，RAM 镜像 X-WRT `26.04_b202609230606` / Linux 6.18.52。测试结果保存在 [evidence/](evidence/)。v0.1.1 的 `.16 / .51` 分支已做离线回归，未再次降级完整重测。
 
 ## 其他选项
 
@@ -50,6 +50,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Start-BE6L-Ramboot.ps1
 
 # 可选：限定必须是 .51；不符时在 Telnet 登录前停止
 .\Start-BE6L-Ramboot.ps1 -Firmware 51
+
+# 可选：限定必须是 .62
+.\Start-BE6L-Ramboot.ps1 -Firmware 62
 
 # 指定原厂地址
 .\Start-BE6L-Ramboot.ps1 -RouterIP 192.168.0.1

@@ -5,10 +5,18 @@ $template = [IO.File]::ReadAllText((Join-Path (Split-Path $testRoot -Parent) 'sr
 function Assert-True($Value, [string]$Message) { if (-not $Value) { throw $Message } }
 $info16 = [pscustomobject]@{ systemCfg = [pscustomobject]@{ softVersion='V16.03.60.16_cn'; productName='BE6LProV1.0' }; deviceVersionList=@() }
 $info51 = [pscustomobject]@{ systemCfg = [pscustomobject]@{ softVersion='V16.03.60.51_cn'; productName='' }; deviceVersionList=@([pscustomobject]@{ip='192.168.0.1';nodeType='controller';devModel='BE6LProV1.0'}) }
+$info62 = [pscustomobject]@{ systemCfg = [pscustomobject]@{ softVersion='V16.03.60.62_cn'; productName='' }; deviceVersionList=@([pscustomobject]@{ip='192.168.0.1';nodeType='controller';devModel='BE6LProV1.0'}) }
 $profile16 = Select-FirmwareProfile $info16 '192.168.0.1'
 $profile51 = Select-FirmwareProfile $info51 '192.168.0.1'
+$profile62 = Select-FirmwareProfile $info62 '192.168.0.1'
 Assert-True ($profile16.Number -eq '16' -and $profile16.Seed -eq '4rKSbd1m_5756') '.16 automatic selection failed'
 Assert-True ($profile51.Number -eq '51' -and $profile51.Seed -eq 'TxVqqk5_7730') '.51 automatic selection failed'
+Assert-True ($profile62.Number -eq '62' -and $profile62.Seed -eq 'HZJb9q_8765') '.62 automatic selection failed'
+$explicit62 = Select-FirmwareProfile $info62 '192.168.0.1' '62'
+Assert-True ($explicit62.Number -eq '62') '.62 explicit selection failed'
+$rejected = $false
+try { $null = Select-FirmwareProfile $info62 '192.168.0.1' '51' } catch { $rejected = $true }
+Assert-True $rejected '.62 must reject a .51 override before Telnet'
 $rejected = $false
 try { $null = Select-FirmwareProfile $info51 '192.168.0.1' '16' } catch { $rejected = $true }
 Assert-True $rejected 'Explicit version mismatch must stop before Telnet'
@@ -16,11 +24,17 @@ $info51.systemCfg.softVersion = 'V16.03.60.62XD'
 $rejected = $false
 try { $null = Select-FirmwareProfile $info51 '192.168.0.1' } catch { $rejected = $true }
 Assert-True $rejected 'Unknown version must stop before Telnet'
+$info51.systemCfg.softVersion = 'V16.03.60.63_cn'
+$rejected = $false
+try { $null = Select-FirmwareProfile $info51 '192.168.0.1' } catch { $rejected = $true }
+Assert-True $rejected 'Unverified .63 must stop before Telnet'
 $info51.systemCfg.softVersion = 'V16.03.60.51_cn'
 $password = Get-RootPassword '02:00:00:00:15:e0' $profile51.Seed
 Assert-True ([Text.Encoding]::ASCII.GetString([Convert]::FromBase64String($password)) -eq '15TxVqqk5_7730e0') '.51 password differs from the verified device input'
 $password16 = Get-RootPassword '02:00:00:00:15:e0' $profile16.Seed
 Assert-True ([Text.Encoding]::ASCII.GetString([Convert]::FromBase64String($password16)) -eq '154rKSbd1m_5756e0') '.16 password differs from the verified device input'
+$password62 = Get-RootPassword '02:00:00:00:ab:cd' $profile62.Seed
+Assert-True ($password62 -eq 'YWJIWkpiOXFfODc2NWNk') '.62 password differs from the fixed Base64 fixture'
 $logPath = Join-Path $testRoot 'fixtures/stock-probe.txt'
 $probe = [IO.File]::ReadAllText($logPath).Replace("`r",'')
 Test-RamLayout $probe 25000000
@@ -29,4 +43,4 @@ try { Test-RamLayout ($probe.Replace('80040000-801fffff : System RAM','80040000-
 Assert-True $rejected 'Incompatible RAM range must be rejected'
 Initialize-Transport
 Assert-True ($null -ne ('Be6l.TelnetSession' -as [type])) 'Built-in transport compilation failed'
-Write-Host 'PASS: automatic .16/.51 selection, mismatch/unknown rejection, .51 password, RAM ranges, transport compilation.'
+Write-Host 'PASS: automatic .16/.51/.62 selection, explicit .62, mismatch/unknown rejection, all three password algorithms, RAM ranges, transport compilation.'

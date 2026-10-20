@@ -39,7 +39,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/Test-Standalone.ps
 pwsh -NoProfile -File tests/Test-Standalone.ps1
 ```
 
-检查自动识别 .16/.51、两套密码算法、提前拒绝版本不符/未知版本、内存范围及内置 C# 传输代码编译。测试使用脱敏夹具，不依赖私有日志。
+检查自动识别 .16/.51/.62、三套密码算法、显式指定 .62、提前拒绝版本不符/未知版本、内存范围及内置 C# 传输代码编译。`.62` 使用固定 Base64 密码夹具；测试使用脱敏数据，不依赖私有日志。
 
 发布文件自身的离线校验：
 
