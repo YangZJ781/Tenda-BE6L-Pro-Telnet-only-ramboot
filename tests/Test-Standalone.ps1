@@ -35,6 +35,23 @@ $password16 = Get-RootPassword '02:00:00:00:15:e0' $profile16.Seed
 Assert-True ([Text.Encoding]::ASCII.GetString([Convert]::FromBase64String($password16)) -eq '154rKSbd1m_5756e0') '.16 password differs from the verified device input'
 $password62 = Get-RootPassword '02:00:00:00:ab:cd' $profile62.Seed
 Assert-True ($password62 -eq 'YWJIWkpiOXFfODc2NWNk') '.62 password differs from the fixed Base64 fixture'
+$additional = @(
+    @('18','bXoUsD_5885','YWJiWG9Vc0RfNTg4NWNk'),
+    @('22','dLFPTO_6096','YWJkTEZQVE9fNjA5NmNk'),
+    @('40','b9NwNY_7173','YWJiOU53TllfNzE3M2Nk'),
+    @('57','zkiB5A_8383','YWJ6a2lCNUFfODM4M2Nk')
+)
+foreach ($fixture in $additional) {
+    $number = $fixture[0]
+    $info = [pscustomobject]@{ systemCfg=[pscustomobject]@{softVersion=('V16.03.60.'+$number+'_cn');productName=''};deviceVersionList=@([pscustomobject]@{ip='192.168.0.1';nodeType='controller';devModel='BE6LProV1.0'}) }
+    $profile = Select-FirmwareProfile $info '192.168.0.1'
+    Assert-True ($profile.Number -eq $number -and $profile.Seed -eq $fixture[1]) ('.'+$number+' selection failed')
+    Assert-True ((Get-RootPassword '02:00:00:00:ab:cd' $profile.Seed) -eq $fixture[2]) ('.'+$number+' fixed password fixture failed')
+    Assert-True ((Select-FirmwareProfile $info '192.168.0.1' $number).Number -eq $number) ('.'+$number+' explicit selection failed')
+    $rejected = $false
+    try { $null = Select-FirmwareProfile $info '192.168.0.1' '62' } catch { $rejected = $true }
+    Assert-True $rejected ('.'+$number+' must reject a .62 override')
+}
 $logPath = Join-Path $testRoot 'fixtures/stock-probe.txt'
 $probe = [IO.File]::ReadAllText($logPath).Replace("`r",'')
 Test-RamLayout $probe 25000000
@@ -43,4 +60,4 @@ try { Test-RamLayout ($probe.Replace('80040000-801fffff : System RAM','80040000-
 Assert-True $rejected 'Incompatible RAM range must be rejected'
 Initialize-Transport
 Assert-True ($null -ne ('Be6l.TelnetSession' -as [type])) 'Built-in transport compilation failed'
-Write-Host 'PASS: automatic .16/.51/.62 selection, explicit .62, mismatch/unknown rejection, all three password algorithms, RAM ranges, transport compilation.'
+Write-Host 'PASS: all seven firmware profiles, explicit selection, mismatch/unknown rejection, fixed password fixtures, RAM ranges, transport compilation.'

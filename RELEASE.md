@@ -1,31 +1,11 @@
-# v0.1.1 — 新增 V16.03.60.62 自动识别与 RAM 启动支持
+# v0.1.2 — 新增 .18 / .22 / .40 / .57
 
-新增原厂 `.62` 的 Telnet 密码种子 `HZJb9q_8765`，默认自动识别 `.16 / .51 / .62` 并选择对应算法，也可通过 `-Firmware 62` 限定版本。内核、设备树和装载器等六个内嵌启动文件与 v0.1.0 相同。
+自动识别七版原厂固件，选择各自 Telnet 密码种子；未知版本或显式版本不符仍会在 Telnet 登录前停止。内嵌六个启动文件与 v0.1.1 相同。
 
-从正常原厂系统，仅经网线和 Telnet 启动 XWRT initramfs；无需 TTL、Python、OpenSSL 或外部数据目录，不刷写固件。
+2026-10-21，新增四版均完成原厂升级、12 项 MTD 备份、派生密码 root 登录和完整单文件 RAM 启动验证。运行流程仅网线 / Telnet，无 TTL、Python、OpenSSL 或外部数据目录；RAM 启动不写闪存。
 
-## 下载
+下载 `Start-BE6L-Ramboot.ps1` 即可直接运行，或下载仅包含相同脚本的 `BE6L-Pro-RAM-Boot.zip`。`SHA256SUMS` 提供附件校验值；`ramboot-payloads.zip`、`loader-inputs.zip` 和 `THIRD-PARTY-NOTICES.txt` 供复现与来源核对，普通使用不需要下载。
 
-- **普通使用：`Start-BE6L-Ramboot.ps1`**，或者只包含同一脚本的 `BE6L-Pro-RAM-Boot.zip`。
-- `SHA256SUMS`：发布附件校验值。
-- `ramboot-payloads.zip`、`loader-inputs.zip`：供源码复现使用，普通运行不需要下载。
-- `THIRD-PARTY-NOTICES.txt`：第三方组件的来源和许可证说明。
+运行 `./Start-BE6L-Ramboot.ps1` 后按提示输入网页管理密码，无需选择版本。成功后管理地址为 http://192.168.15.1/，账号和密码均为 admin。无线仍暂时禁用，重启返回原厂固件。.16 / .51 / .62 的完整启动结果沿用历史记录。
 
-```powershell
-.\Start-BE6L-Ramboot.ps1
-```
-
-按提示输入原厂网页管理密码。脚本默认自动识别 .16/.51/.62，再选择对应的 Telnet 密码算法，不需要传版本参数。
-
-## 验证与限制
-
-- 2026-10-20，v0.1.1 单文件 PS1 在正常运行的 `V16.03.60.62_cn` 上完成完整实测：仅有一个输入文件、未访问 TTL，并从网络确认 `rootfs_type=initramfs`、Linux 6.18.52。
-- 原厂 `V16.03.60.16_cn`、`V16.03.60.51_cn` 的完整启动结果沿用此前实际测试；v0.1.1 未再次降级完整重测这两个版本。
-- Windows PowerShell 5.1 / PowerShell 7 均通过版本识别、三套密码算法、版本不符/未知版本拒绝、内存布局及传输代码回归检查。
-- 修复旧分文件脚本默认按 .16 密码算法登录 .51、随后才检查版本的问题。当前版本不符或未知固件会在 Telnet 登录前停止。
-- **实验版：无线暂时禁用。** 原始设备树在 kexec 后会触发 mt7996e 初始化超时及崩溃，目前验证的是有线 RAM 系统。
-- `.62XD` 等未验证版本字符串仍会在 Telnet 登录前停止；本次确认的是正常原厂 `V16.03.60.62_cn`。
-
-成功后的管理页：`http://192.168.15.1/`，账号 / 密码 `admin` / `admin`。重启返回闪存中的原厂固件。
-
-完整研究、源码、脱敏证据与构建方法见仓库 README。
+实测 PS1 SHA-256：`a28c155fcb028d8094cc3a8bfe9edf208bc15cb42ea18bf553e75892bc2b82cf`。详细证据见 `docs/firmware-20261021.md` 和 `evidence/firmware-18.json` 等文件。

@@ -1,5 +1,5 @@
 <#
-BE6L Pro: stock .16/.51/.62 -> XWRT initramfs, entirely through Ethernet.
+BE6L Pro: stock .16/.18/.22/.40/.51/.57/.62 -> XWRT initramfs through Ethernet.
 Single file, Windows PowerShell 5.1 or PowerShell 7. No Python/OpenSSL/TTL.
 Default: detect the stock version before choosing the Telnet password.
 Wireless is disabled in the embedded RAM device tree. No flash writes.
@@ -7,7 +7,7 @@ Wireless is disabled in the embedded RAM device tree. No flash writes.
 [CmdletBinding()]
 param(
     [string]$RouterIP = '192.168.0.1',
-    [ValidateSet('Auto','16','51','62')][string]$Firmware = 'Auto',
+    [ValidateSet('Auto','16','18','22','40','51','57','62')][string]$Firmware = 'Auto',
     [string]$NewRouterIP = '192.168.15.1',
     [switch]$CheckFiles,
     [switch]$CheckOnly,
@@ -117,12 +117,12 @@ function Select-FirmwareProfile($Info, [string]$Address, [string]$Expected = 'Au
         if ($node.Count -eq 1) { $model = [string]$node[0].devModel }
     }
     if ($model -ne 'BE6LProV1.0') { throw ('设备型号不符：' + $model + '；尚未尝试 Telnet 登录。') }
-    if ($version -notmatch '^V16\.03\.60\.(16|51|62)(?:_|$)') { throw ('尚未支持此固件：' + $version + '；尚未尝试 Telnet 登录。') }
+    if ($version -notmatch '^V16\.03\.60\.(16|18|22|40|51|57|62)(?:_|$)') { throw ('尚未支持此固件：' + $version + '；尚未尝试 Telnet 登录。') }
     $number = $Matches[1]
     if ($Expected -ne 'Auto' -and $Expected -ne $number) {
         throw ('版本不符：当前 ' + $version + '，指定了 .' + $Expected + '；尚未尝试 Telnet 登录。')
     }
-    $seeds = @{ '16' = '4rKSbd1m_5756'; '51' = 'TxVqqk5_7730'; '62' = 'HZJb9q_8765' }
+    $seeds = @{ '16' = '4rKSbd1m_5756'; '18' = 'bXoUsD_5885'; '22' = 'dLFPTO_6096'; '40' = 'b9NwNY_7173'; '51' = 'TxVqqk5_7730'; '57' = 'zkiB5A_8383'; '62' = 'HZJb9q_8765' }
     $seed = $seeds[$number]
     return [pscustomobject]@{ Version = $version; Number = $number; Model = $model; Seed = $seed }
 }

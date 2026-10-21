@@ -1,0 +1,30 @@
+[
+  {
+    "version": "V16.03.60.18_cn",
+    "text_bytes": 1384,
+    "text_sha256": "ba7a5f9124bc61939c03a799ddd05733bcd75e3ca516897cfeaec3d329dc8cc1",
+    "text_identical_to_62": true,
+    "whole_binary_identical_to_62_after_seed_replacement": true
+  },
+  {
+    "version": "V16.03.60.22_cn",
+    "text_bytes": 1384,
+    "text_sha256": "ba7a5f9124bc61939c03a799ddd05733bcd75e3ca516897cfeaec3d329dc8cc1",
+    "text_identical_to_62": true,
+    "whole_binary_identical_to_62_after_seed_replacement": true
+  },
+  {
+    "version": "V16.03.60.40_cn",
+    "text_bytes": 1384,
+    "text_sha256": "ba7a5f9124bc61939c03a799ddd05733bcd75e3ca516897cfeaec3d329dc8cc1",
+    "text_identical_to_62": true,
+    "whole_binary_identical_to_62_after_seed_replacement": true
+  },
+  {
+    "version": "V16.03.60.57_cn",
+    "text_bytes": 1384,
+    "text_sha256": "ba7a5f9124bc61939c03a799ddd05733bcd75e3ca516897cfeaec3d329dc8cc1",
+    "text_identical_to_62": true,
+    "whole_binary_identical_to_62_after_seed_replacement": true
+  }
+]

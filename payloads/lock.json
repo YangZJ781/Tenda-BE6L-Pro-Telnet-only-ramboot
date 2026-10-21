@@ -2,15 +2,22 @@
   "payload_archive": "ramboot-payloads.zip",
   "payload_sha256": "1eb4cfd0d5b40db3a87206ffdfa96edfbfbd3602d9efd1af0f2e6ca0195f919a",
   "script": "Start-BE6L-Ramboot.ps1",
-  "script_sha256": "bf799b499424e3092f185611601964ad452d517d2a1c989dc6821fb47f728e2c",
-  "release_tag": "v0.1.1",
+  "script_sha256": "a28c155fcb028d8094cc3a8bfe9edf208bc15cb42ea18bf553e75892bc2b82cf",
+  "release_tag": "v0.1.2",
   "tested_firmware": [
     "V16.03.60.16_cn",
+    "V16.03.60.18_cn",
+    "V16.03.60.22_cn",
+    "V16.03.60.40_cn",
     "V16.03.60.51_cn",
+    "V16.03.60.57_cn",
     "V16.03.60.62_cn"
   ],
   "wireless_disabled": true,
   "standalone_script_tested_firmware": [
-    "V16.03.60.62_cn"
+    "V16.03.60.18_cn",
+    "V16.03.60.22_cn",
+    "V16.03.60.40_cn",
+    "V16.03.60.57_cn"
   ]
 }

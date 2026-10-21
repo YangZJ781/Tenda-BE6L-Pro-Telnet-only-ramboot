@@ -1,0 +1,20 @@
+{
+  "stock_version": "V16.03.60.40_cn",
+  "model": "BE6LProV1.0",
+  "authenticated_telnet_enable": true,
+  "telnet_root_login": true,
+  "offline_live_cnsl_safe_identical": true,
+  "cnsl_safe_sha256": "1b1c37a937a1fe732b4944e9cc533251f23abea1a8fef28024edf5bb280a38f7",
+  "backup_partitions": 12,
+  "backup_complete": true,
+  "test_date": "2026-10-21",
+  "ramboot_result": "initramfs_verified",
+  "kernel_switch_transport": "telnet",
+  "serial_access_during_ramboot": false,
+  "board_name": "tenda,be6l-pro",
+  "rootfs_type": "initramfs",
+  "kernel": "6.18.52",
+  "wireless_disabled": true,
+  "release_script_sha256": "a28c155fcb028d8094cc3a8bfe9edf208bc15cb42ea18bf553e75892bc2b82cf",
+  "isolated_directory": true
+}

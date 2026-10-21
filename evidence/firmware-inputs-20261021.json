@@ -1,0 +1,26 @@
+[
+  {
+    "version": "16.03.60.57",
+    "archive": "US_BE6LProV1.0mt_V16.03.60.57_cn_TDC01.zip",
+    "bytes": 26645604,
+    "sha256": "27bf98ee405ff08cefe9db7f2b80cde4fc3774342c981bc529cdece4dc195d53"
+  },
+  {
+    "version": "16.03.60.18",
+    "archive": "V16.03.60.18.zip",
+    "bytes": 27014244,
+    "sha256": "2a8a569a07e2c66306337eda8c1c64400c655f991b002d1d152f5c055eb90127"
+  },
+  {
+    "version": "16.03.60.22",
+    "archive": "V16.03.60.22.zip",
+    "bytes": 27022436,
+    "sha256": "87ab80f7a333004d6850af1114379e3dee6b5020bfaf47b809db2c8b57a423f8"
+  },
+  {
+    "version": "16.03.60.40",
+    "archive": "V16.03.60.40.zip",
+    "bytes": 27157604,
+    "sha256": "1aedf6395f0e73b4bcc24ab90b78be602b7619a2b585728b6475f8f86b257e2a"
+  }
+]
