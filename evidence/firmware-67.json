@@ -1,0 +1,12 @@
+{
+  "stock_version": "V16.03.60.67_cn",
+  "model": "BE6LProV1.0",
+  "authenticated_telnet_enable": true,
+  "telnet_root_login": true,
+  "seed": "dgQnqW_10379",
+  "cnsl_safe_sha256": "f64f1f2d0049b673618e6428e9e449d3e956e1e38e4cf1f559e5bacde1cc605d",
+  "backup_partitions": 12,
+  "backup_complete": true,
+  "test_date": "2026-10-25",
+  "board_name": "tenda,be6l-pro"
+}

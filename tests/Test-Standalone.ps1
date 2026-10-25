@@ -39,7 +39,8 @@ $additional = @(
     @('18','bXoUsD_5885','YWJiWG9Vc0RfNTg4NWNk'),
     @('22','dLFPTO_6096','YWJkTEZQVE9fNjA5NmNk'),
     @('40','b9NwNY_7173','YWJiOU53TllfNzE3M2Nk'),
-    @('57','zkiB5A_8383','YWJ6a2lCNUFfODM4M2Nk')
+    @('57','zkiB5A_8383','YWJ6a2lCNUFfODM4M2Nk'),
+    @('67','dgQnqW_10379','YWJkZ1FucVdfMTAzNzljZA==')
 )
 foreach ($fixture in $additional) {
     $number = $fixture[0]
@@ -60,4 +61,4 @@ try { Test-RamLayout ($probe.Replace('80040000-801fffff : System RAM','80040000-
 Assert-True $rejected 'Incompatible RAM range must be rejected'
 Initialize-Transport
 Assert-True ($null -ne ('Be6l.TelnetSession' -as [type])) 'Built-in transport compilation failed'
-Write-Host 'PASS: all seven firmware profiles, explicit selection, mismatch/unknown rejection, fixed password fixtures, RAM ranges, transport compilation.'
+Write-Host 'PASS: all eight firmware profiles, explicit selection, mismatch/unknown rejection, fixed password fixtures, RAM ranges, transport compilation.'
